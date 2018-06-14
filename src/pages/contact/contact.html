@@ -1,17 +1,40 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Contact
-    </ion-title>
+
+  <ion-navbar color="secondary">
+    <ion-title>Agendar Tarefa</ion-title>
   </ion-navbar>
+
 </ion-header>
 
-<ion-content>
+<ion-content padding>
+
   <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
+
     <ion-item>
-      <ion-icon name="ionic" item-start></ion-icon>
-      @ionicframework
+      <ion-label stacked>Tarefa</ion-label>
+      <ion-input type="text" [(ngModel)]="datos.nome"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label stacked>Descrição</ion-label>
+      <ion-input type="text" [(ngModel)]="datos.descricao"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Hora</ion-label>
+      <ion-input type="text"[(ngModel)]="datos.hora"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>data</ion-label>
+      <ion-input type="text" [(ngModel)]="datos.data"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Local</ion-label>
+      <ion-input type="text" [(ngModel)]="datos.local"></ion-input>
     </ion-item>
   </ion-list>
+  <div>
+    <button (click)="Agenda(datos)" block ion-button color="secondary">Salvar</button>
+</div> 
 </ion-content>

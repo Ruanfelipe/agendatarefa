@@ -1,14 +1,53 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { Http, Headers, RequestOptions } from '@angular/http';
+  import { AboutPage } from '../about/about';
+  import 'rxjs/add/operator/map';
+  
+  @IonicPage()
+  @Component({
+    selector: 'page-contact',
+    templateUrl: 'contact.html'
+  })
+  export class ContactPage {
+    private url:string = "http://localhost:3000/agenda";
+	
+    public datos = {
+      nome: '',
+      descricao: '',
+      hora:'',
+      data: '',
+      local:''
 
-@Component({
-  selector: 'page-contact',
-  templateUrl: 'contact.html'
-})
-export class ContactPage {
+    };
 
-  constructor(public navCtrl: NavController) {
+    constructor(
+      public toastCtrl: ToastController,
+      public navCtrl: NavController, public http:Http, public navParams: NavParams,
+    ) {}
+    Agenda(datos){
+      let headers = new Headers();
+      headers.append('Content-type','application/json');
+    
+      let options = new RequestOptions({ headers: headers });
+    
+      this.http.post(this.url, datos, options)
+          .map(res => res.json())
+          .subscribe(data => {
+            const toast = this.toastCtrl.create({
+            message: 'Agendado com Sucesso!',
+            showCloseButton: true,
+            closeButtonText: 'Ok'
+            });
+            toast.present();
+            this.navCtrl.push(AboutPage);
+          });
+    
+        datos.nome = "";
+        datos.descricao = "";      
+        datos.hora="";
+        datos.data = "";
+        datos.local="";
 
-  }
-
+      }   
 }

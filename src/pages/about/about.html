@@ -1,11 +1,19 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="secondary">
     <ion-title>
-      About
+      Agenda
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-
+  <ion-list>
+    <ion-item *ngFor="let d of dados">
+      <h2><b>{{ d.nome }}</b></h2>
+      <h3><b>Descrição:</b> {{ d.descricao }}</h3>
+      <h3><b>data:</b> {{ d.data }}</h3>
+      <h3><b>Hora:</b> {{ d.hora }}</h3>
+      <h3><b>Local:</b> {{ d.local }}</h3>
+    </ion-item>
+  </ion-list>
 </ion-content>
